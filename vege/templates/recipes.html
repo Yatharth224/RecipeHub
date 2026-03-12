@@ -1,63 +1,180 @@
-{% extends 'base.html' %} {% block start %}
+{% extends 'base.html' %}
+
+{% block start %}
 
 <div class="container mt-5">
-  <form
-    class="col-6 mx-auto card p-3 shadow-lg"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    {% csrf_token %}
-    <h2>Add New Recipe</h2>
-    <hr />
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Recipe Name</label>
-      <input name="recipe_name" required type="text" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label"
-        >Recipe Discription</label
-      >
-      <textarea class="form-control" name="recipe_description" required>
-      </textarea>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Recipe Image</label>
-      <input name="recipe_image" type="file" class="form-control" />
-    </div>
 
-    <button type="submit" class="btn btn-success">Add Recipe</button>
-  </form>
+<!-- SEARCH -->
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Recipe Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Image</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for recipe in recipes %}
-      <tr>
-        <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ recipe.recipe_name }}</td>
-        <td>{{ recipe.recipe_description }}</td>
-        <td>
-            <img src="{{ recipe.recipe_image.url }}" style="height:100px" /> </td>  
-            <td>
-               <a href="/delete_recipe/{{ recipe.id }}/" class="btn btn-danger m-2"> Delete</a>
-               <a href="/update_recipe/{{ recipe.id }}/" class="btn btn-success"> Update</a>
-               
-              
- 
+<div class="row justify-content-center mb-5">
 
-            </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="col-md-6">
+
+<form method="get" class="glass-card">
+
+<h4 class="mb-3">Search Recipe</h4>
+
+<input
+type="text"
+name="search"
+value="{{ search_query|default_if_none:'' }}"
+class="form-control mb-3"
+placeholder="Search recipe..."
+>
+
+<button class="btn-premium w-100">
+Search
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- ADD RECIPE -->
+
+<div class="row justify-content-center mb-5">
+
+<div class="col-md-6">
+
+<div class="glass-card">
+
+<h4 class="mb-3">Add New Recipe</h4>
+
+<form method="post" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="mb-3">
+<input name="recipe_name" class="form-control" placeholder="Recipe Name" required>
+</div>
+
+<div class="mb-3">
+<textarea name="recipe_ingredients" class="form-control" rows="2" placeholder="Ingredients comma separated"></textarea>
+</div>
+
+<div class="mb-3">
+<textarea name="recipe_description" class="form-control" rows="3" placeholder="Recipe Method"></textarea>
+</div>
+
+<div class="mb-3">
+<input type="file" name="recipe_image" class="form-control">
+</div>
+
+<button class="btn-premium w-100">
+Add Recipe
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- RECIPES GRID -->
+
+<div class="row">
+
+{% for recipe in recipes %}
+
+<div class="col-md-4 mb-4">
+
+<div class="flip-card">
+
+<div class="flip-card-inner">
+
+<!-- FRONT -->
+
+<div class="flip-card-front">
+
+{% if recipe.recipe_image %}
+<img src="{{ recipe.recipe_image.url }}">
+{% endif %}
+
+<div class="p-3">
+
+<h5 class="fw-bold">
+{{ recipe.recipe_name }}
+</h5>
+
+<p class="text-light small">
+Hover to see recipe details
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- BACK -->
+
+<div class="flip-card-back">
+
+<h6 class="text-warning">
+Ingredients
+</h6>
+
+<div class="mb-2">
+
+{% for ingredient in recipe.ingredients_list %}
+
+<span class="tag">
+{{ ingredient }}
+</span>
+
+{% endfor %}
+
+</div>
+
+<h6 class="text-warning mt-2">
+Method
+</h6>
+
+<p class="small">
+
+{{ recipe.recipe_description|truncatechars:120 }}
+
+</p>
+
+<a href="{% url 'recipe_detail' recipe.id %}" class="read-more mb-2">
+
+Read More →
+
+</a>
+
+<div class="mt-auto">
+
+<a href="/delete_recipe/{{ recipe.id }}/"
+class="btn btn-danger btn-sm">
+Delete
+</a>
+
+<a href="/update_recipe/{{ recipe.id }}/"
+class="btn btn-success btn-sm">
+Update
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
 </div>
 
 {% endblock %}
