@@ -1,6 +1,8 @@
+from django import views
+from vege import views
 from django.contrib import admin
 from django.urls import path
-from vege.views import recipes, recipe_detail, delete_recipe, update_recipe
+from vege.views import login_page, recipes, recipe_detail, delete_recipe, update_recipe
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -15,6 +17,9 @@ urlpatterns = [
     path('delete_recipe/<int:id>/', delete_recipe),
 
     path('update_recipe/<int:id>/', update_recipe),
+
+    path('login/', views.login_page, name='login'),
+    path('register/', views.register_page, name='register'),
 
 ]
 
