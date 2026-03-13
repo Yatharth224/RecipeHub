@@ -1,180 +1,208 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block start %}
 
-{% block start %}
+<div class="hero mb-5">
+  <h1>Fresh <i>Culinary</i> Ideas</h1>
+  <p class="mb-5">
+    Search, discover, and share your favorite meals with our bright community.
+  </p>
 
-<div class="container mt-5">
-
-<!-- SEARCH -->
-
-<div class="row justify-content-center mb-5">
-
-<div class="col-md-6">
-
-<form method="get" class="glass-card">
-
-<h4 class="mb-3">Search Recipe</h4>
-
-<input
-type="text"
-name="search"
-value="{{ search_query|default_if_none:'' }}"
-class="form-control mb-3"
-placeholder="Search recipe..."
->
-
-<button class="btn-premium w-100">
-Search
-</button>
-
-</form>
-
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <form
+        method="get"
+        class="d-flex gap-2 p-2 bg-white rounded-pill shadow-sm border"
+      >
+        <input
+          type="text"
+          name="search"
+          value="{{ search_query|default_if_none:'' }}"
+          class="form-control border-0 bg-transparent shadow-none"
+          style="padding-left: 1.5rem"
+          placeholder="What are you craving? (e.g. Avocado Toast)"
+        />
+        <button class="btn-brand rounded-pill px-4">Search</button>
+      </form>
+    </div>
+  </div>
 </div>
 
+<div class="container mb-5">
+  <div class="text-center mb-5 pb-4 border-bottom">
+    <h3 class="brand-font mb-2">Trending Inspiration</h3>
+    <p class="text-muted mb-4">
+      A curated glimpse into what our community is cooking right now.
+    </p>
+
+    <div class="row g-3 justify-content-center">
+      <div class="col-6 col-md-3">
+        <img
+          src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop"
+          class="inspiration-img"
+          alt="Salad"
+        />
+      </div>
+      <div class="col-6 col-md-3">
+        <img
+          src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop"
+          class="inspiration-img"
+          alt="Healthy Bowl"
+        />
+      </div>
+      <div class="col-6 col-md-3">
+        <img
+          src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop"
+          class="inspiration-img"
+          alt="Pizza"
+        />
+      </div>
+      <div class="col-6 col-md-3">
+        <img
+          src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&h=300&fit=crop"
+          class="inspiration-img"
+          alt="Sandwich"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-10 col-lg-8">
+    {% if request.user.is_authenticated %}
+    <div class="upload-card">
+      <div class="text-center mb-4">
+        <h3 class="brand-font mb-1">Publish Your Recipe</h3>
+        <p class="text-muted small">Upload your own dish to Recipe Hubs.</p>
+      </div>
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="small text-muted mb-1 fw-medium">Recipe Title</label>
+            <input
+              name="recipe_name"
+              class="form-control"
+              placeholder="e.g. Lemon Basil Pasta"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label class="small text-muted mb-1 fw-medium">Cover Image</label>
+            <input
+              type="file"
+              name="recipe_image"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="col-12">
+            <label class="small text-muted mb-1 fw-medium">Ingredients</label>
+            <textarea
+              name="recipe_ingredients"
+              class="form-control"
+              rows="2"
+              placeholder="Comma separated (e.g. Flour, Sugar, 2 Eggs)"
+              required
+            ></textarea>
+          </div>
+          <div class="col-12">
+            <label class="small text-muted mb-1 fw-medium"
+              >Preparation Method</label
+            >
+            <textarea
+              name="recipe_description"
+              class="form-control"
+              rows="3"
+              placeholder="Step-by-step cooking instructions..."
+              required
+            ></textarea>
+          </div>
+          <div class="col-12 text-center mt-4">
+            <button class="btn-brand px-5 py-2">Publish Recipe</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% else %}
+    <div
+      class="upload-card text-center py-5"
+      style="background-color: var(--bg-body); border-style: dashed"
+    >
+      <span style="font-size: 2.5rem">🧑‍🍳</span>
+      <h3 class="brand-font mt-3 mb-2">Have a recipe to share?</h3>
+      <p class="text-muted mb-4">
+        Join our community of home cooks and chefs to publish your own dishes.
+      </p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="/register/" class="btn btn-brand px-4 py-2"
+          >Create an Account</a
+        >
+        <a href="/login/" class="btn btn-outline-secondary px-4 py-2">Log In</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-5 g-4">
+    {% for recipe in recipes %}
+    <div class="col">
+      <div class="recipe-card">
+        {% if recipe.recipe_image %}
+        <img
+          src="{{ recipe.recipe_image.url }}"
+          class="recipe-image"
+          alt="{{ recipe.recipe_name }}"
+        />
+        {% else %}
+        <img
+          src="https://via.placeholder.com/400x500/e9ecef/6c757d?text=No+Image"
+          class="recipe-image"
+          alt="Placeholder"
+        />
+        {% endif %}
+
+        <div class="recipe-overlay-default">
+          <h5 class="brand-font">{{ recipe.recipe_name }}</h5>
+        </div>
+
+        <div class="recipe-overlay-hover">
+          <h6 class="brand-font border-bottom pb-2 mb-2 text-dark">
+            {{ recipe.recipe_name }}
+          </h6>
+
+          <div class="hover-content flex-grow-1">
+            <div class="section-label">Ingredients</div>
+            <p class="line-clamp-2">{{ recipe.recipe_ingredients }}</p>
+
+            <div class="section-label mt-2">Method</div>
+            <p class="line-clamp-2">{{ recipe.recipe_description }}</p>
+          </div>
+
+          <div class="mt-auto">
+            <a
+              href="{% url 'recipe_detail' recipe.id %}"
+              class="btn-brand d-block text-center text-decoration-none mb-2 w-100 py-2"
+              style="font-size: 0.85rem"
+            >
+              Read More
+            </a>
+            <div class="d-flex gap-2">
+              <a
+                href="/update_recipe/{{ recipe.id }}/"
+                class="btn btn-outline-secondary btn-sm flex-grow-1"
+                >Update</a
+              >
+              <a
+                href="/delete_recipe/{{ recipe.id }}/"
+                class="btn btn-outline-danger btn-sm flex-grow-1"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
-
-
-<!-- ADD RECIPE -->
-
-<div class="row justify-content-center mb-5">
-
-<div class="col-md-6">
-
-<div class="glass-card">
-
-<h4 class="mb-3">Add New Recipe</h4>
-
-<form method="post" enctype="multipart/form-data">
-
-{% csrf_token %}
-
-<div class="mb-3">
-<input name="recipe_name" class="form-control" placeholder="Recipe Name" required>
-</div>
-
-<div class="mb-3">
-<textarea name="recipe_ingredients" class="form-control" rows="2" placeholder="Ingredients comma separated"></textarea>
-</div>
-
-<div class="mb-3">
-<textarea name="recipe_description" class="form-control" rows="3" placeholder="Recipe Method"></textarea>
-</div>
-
-<div class="mb-3">
-<input type="file" name="recipe_image" class="form-control">
-</div>
-
-<button class="btn-premium w-100">
-Add Recipe
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- RECIPES GRID -->
-
-<div class="row">
-
-{% for recipe in recipes %}
-
-<div class="col-md-4 mb-4">
-
-<div class="flip-card">
-
-<div class="flip-card-inner">
-
-<!-- FRONT -->
-
-<div class="flip-card-front">
-
-{% if recipe.recipe_image %}
-<img src="{{ recipe.recipe_image.url }}">
-{% endif %}
-
-<div class="p-3">
-
-<h5 class="fw-bold">
-{{ recipe.recipe_name }}
-</h5>
-
-<p class="text-light small">
-Hover to see recipe details
-</p>
-
-</div>
-
-</div>
-
-
-
-<!-- BACK -->
-
-<div class="flip-card-back">
-
-<h6 class="text-warning">
-Ingredients
-</h6>
-
-<div class="mb-2">
-
-{% for ingredient in recipe.ingredients_list %}
-
-<span class="tag">
-{{ ingredient }}
-</span>
-
-{% endfor %}
-
-</div>
-
-<h6 class="text-warning mt-2">
-Method
-</h6>
-
-<p class="small">
-
-{{ recipe.recipe_description|truncatechars:120 }}
-
-</p>
-
-<a href="{% url 'recipe_detail' recipe.id %}" class="read-more mb-2">
-
-Read More →
-
-</a>
-
-<div class="mt-auto">
-
-<a href="/delete_recipe/{{ recipe.id }}/"
-class="btn btn-danger btn-sm">
-Delete
-</a>
-
-<a href="/update_recipe/{{ recipe.id }}/"
-class="btn btn-success btn-sm">
-Update
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
 {% endblock %}
