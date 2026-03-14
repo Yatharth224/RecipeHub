@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+<div class="container mt-5 mb-5 pb-5">
+    <div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="col-12 col-md-8 col-lg-5">
+
+            <div class="upload-card shadow-lg" style="border-top: 4px solid var(--accent);">
+                
+                <div class="text-center mb-5">
+                    <h2 class="brand-font fw-bold mb-2 text-dark">Welcome Back</h2>
+                    <p class="text-muted small">Log in to access your saved recipes.</p>
+                </div>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger py-2 small border-0" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" action="/login/">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <label class="small text-muted mb-1 fw-medium">Username</label>
+                        <input type="text" name="username" class="form-control py-2" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="small text-muted fw-medium mb-0">Password</label>
+                            <a href="#" class="small text-decoration-none" style="color: var(--accent);">Forgot?</a>
+                        </div>
+                        <input type="password" name="password" class="form-control py-2" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-brand w-100 py-2 fs-6">Sign In</button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4 pt-4 border-top">
+                    <p class="small text-muted mb-0">
+                        Don't have an account? 
+                        <a href="/register/" class="text-decoration-none fw-bold" style="color: var(--accent);">Join Recipe Hubs</a>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
