@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+<div class="container mt-5 mb-5 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+
+            <div class="upload-card">
+                
+                <div class="text-center mb-4">
+                    <h1 class="brand-font fw-bold mb-2 text-dark">{{ recipe.recipe_name }}</h1>
+                    <span class="text-muted small text-uppercase" style="letter-spacing: 1px;">Recipe Details</span>
+                </div>
+
+                {% if recipe.recipe_image %}
+                <div class="mb-5 overflow-hidden rounded-4 shadow-sm" style="height: 400px;">
+                    <img src="{{ recipe.recipe_image.url }}" class="w-100 h-100" style="object-fit: cover;" alt="{{ recipe.recipe_name }}">
+                </div>
+                {% endif %}
+
+                <div class="mb-5">
+                    <h4 class="brand-font border-bottom pb-2 mb-4 text-dark">Ingredients</h4>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for ingredient in ingredients %}
+                            <span class="tag px-3 py-2" style="font-size: 0.9rem;">{{ ingredient }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <h4 class="brand-font border-bottom pb-2 mb-4 text-dark">Preparation Method</h4>
+                    <p class="text-muted lh-lg" style="font-size: 1.05rem; white-space: pre-line;">
+                        {{ recipe.recipe_description }}
+                    </p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-3 justify-content-center mt-5 pt-4 border-top">
+                    <a href="/update_recipe/{{ recipe.id }}/" class="btn btn-brand px-4 py-2">
+                        Edit Recipe
+                    </a>
+                    <a href="/delete_recipe/{{ recipe.id }}/" class="btn btn-outline-danger px-4 py-2">
+                        Delete
+                    </a>
+                    <a href="/" class="btn btn-outline-secondary px-4 py-2">
+                        Back to Hub
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
