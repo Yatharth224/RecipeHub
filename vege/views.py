@@ -83,10 +83,6 @@ def update_recipe(request, id):
 
 
 
-
-
-
-
 def delete_recipe(request, id):
     queryset = Recipe.objects.get(id=id)
     queryset.delete()
