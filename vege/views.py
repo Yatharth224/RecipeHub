@@ -76,26 +76,10 @@ def update_recipe(request, id):
         return redirect('/recipes/')
 
 
-
-
-
-
-
     
     context = {'recipe': queryset}
 
     return render(request, 'update_recipe.html', context)
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -164,7 +148,7 @@ def register_page(request):
         last_name = data.get('last_name')
         username = data.get('username')
         email = data.get('email')
-        password = data.get('password')
+        password = data.get('password')git
         
         
         if User.objects.filter(username=username).exists():
