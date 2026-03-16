@@ -124,6 +124,9 @@ def login_page(request):
         data = request.POST
         username = data.get('username')
         password = data.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user is None:
 
 
 
