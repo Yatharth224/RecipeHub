@@ -120,6 +120,11 @@ def login_page(request):
         return redirect('/')
 
 
+    if request.method == "POST":
+        data = request.POST
+        username = data.get('username')
+        password = data.get('password')
+
 
 
 
