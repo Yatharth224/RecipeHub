@@ -127,6 +127,9 @@ def login_page(request):
         user = authenticate(username=username, password=password)
 
         if user is None:
+            messages.error(request, 'Invalid username or password.')
+            return redirect('/login/')
+        else:
 
 
 
