@@ -8,4 +8,8 @@ The platform enables users to manage recipes efficiently while demonstrating bes
 
 ---
 
-#
+## 🎯 Purpose of the Project
+
+This project was built with the goal of:
+
+- Learning Django framework fundamentals
