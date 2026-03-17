@@ -4,6 +4,7 @@ import django
 from django.shortcuts import render, redirect
 from .models import Recipe
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 def recipes(request):
@@ -119,11 +120,11 @@ def login_page(request):
     if request.user.is_authenticated:
         return redirect('/')
 
-
     if request.method == "POST":
         data = request.POST
         username = data.get('username')
         password = data.get('password')
+
         user = authenticate(username=username, password=password)
 
         if user is None:
@@ -138,7 +139,7 @@ def login_page(request):
 
 
 
-    return render(request, 'login.html')    
+    
 
 
 
@@ -161,7 +162,7 @@ def register_page(request):
         last_name = data.get('last_name')
         username = data.get('username')
         email = data.get('email')
-        password = data.get('password')git
+        password = data.get('password')
         
         
         if User.objects.filter(username=username).exists():
