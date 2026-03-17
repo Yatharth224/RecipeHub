@@ -15,3 +15,7 @@ This project was built with the goal of:
 - Learning Django framework fundamentals
 - Understanding CRUD operations in real-world scenarios
 - Implementing backend logic with database interaction
+- Building dynamic web pages using Django templates
+- Practicing clean and modular project architecture
+
+---
