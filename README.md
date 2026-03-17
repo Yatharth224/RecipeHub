@@ -13,3 +13,5 @@ The platform enables users to manage recipes efficiently while demonstrating bes
 This project was built with the goal of:
 
 - Learning Django framework fundamentals
+- Understanding CRUD operations in real-world scenarios
+- Implementing backend logic with database interaction
