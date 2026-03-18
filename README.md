@@ -24,12 +24,12 @@ This project was built with the goal of:
 
 ## 🚀 Features
 
-- ✅ Add new recipes with title, description, and image
-- 📖 View all recipes in a structured format
-- ✏️ Update existing recipes
-- ❌ Delete recipes
-- 🔍 Search recipes by name
-- 🧩 Clean UI using HTML, CSS (Bootstrap optional)
-- 🛠️ Django Admin panel integration
+-  Add new recipes with title, description, and image
+-  View all recipes in a structured format
+-  Update existing recipes
+-  Delete recipes
+- Search recipes by name
+-  Clean UI using HTML, CSS (Bootstrap optional)
+-  Django Admin panel integration
 
 ---
