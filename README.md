@@ -47,3 +47,25 @@ This project was built with the goal of:
 | Bootstrap        | UI Styling (optional)          |
 
 ---
+
+## 📂 Project Structure
+
+
+recipe_hub/
+│
+├── manage.py
+├── recipe_hub/
+│ ├── settings.py
+│ ├── urls.py
+│
+├── recipes/
+│ ├── models.py
+│ ├── views.py
+│ ├── urls.py
+│ ├── templates/
+│ │ ├── base.html
+│ │ ├── recipe_list.html
+│ │ ├── recipe_form.html
+│
+├── media/
+│ ├── uploads/
