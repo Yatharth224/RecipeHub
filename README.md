@@ -33,3 +33,17 @@ This project was built with the goal of:
 -  Django Admin panel integration
 
 ---
+
+
+
+## 🛠️ Tech Stack
+
+| Technology        | Usage                          |
+|------------------|--------------------------------|
+| Django           | Backend framework              |
+| Python           | Programming language           |
+| SQLite           | Database (default Django DB)   |
+| HTML/CSS         | Frontend                       |
+| Bootstrap        | UI Styling (optional)          |
+
+---
