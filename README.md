@@ -49,19 +49,18 @@ This project was built with the goal of:
 ---
 
 ## 📂 Project Structure
-
 project_root/
 │
 ├── manage.py
 ├── db.sqlite3
 ├── README.md
 │
-├── core/                  # Project configuration folder
+├── core/                      # Project configuration
 │   ├── __pycache__/
 │   ├── core/
 │   ├── settings.py
 │
-├── vege/                  # Main Django project (settings, urls, wsgi)
+├── vege/                      # Main Django project
 │   ├── __init__.py
 │   ├── asgi.py
 │   ├── settings.py
@@ -69,7 +68,7 @@ project_root/
 │   ├── wsgi.py
 │   ├── admin.py
 │
-├── recipe/                # Django app (business logic)
+├── recipe/                    # Django app (CRUD logic)
 │   ├── __pycache__/
 │   ├── migrations/
 │   ├── templates/
@@ -86,13 +85,8 @@ project_root/
 │   ├── tests.py
 │   ├── views.py
 │
-├── templates/             # Global templates
+├── templates/                 # Global templates
 │   ├── base.html
 │
 ├── public/
-│   ├── media/             # Uploaded images
-│       ├── Gobi-Manchurian.jpg
-│       ├── IMG_*.jpg
-│       ├── Khumb-Matar.jpg
-│       ├── Mango-Cards.jpg
-│       ├── Rajasthani-Papad.jpg
+│   ├── media/                 # Uploaded files (images not shown)
