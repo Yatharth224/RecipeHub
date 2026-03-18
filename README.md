@@ -49,6 +49,8 @@ This project was built with the goal of:
 ---
 
 ## 📂 Project Structure
+
+```bash
 project_root/
 │
 ├── manage.py
@@ -58,7 +60,7 @@ project_root/
 ├── core/                      # Project configuration
 │   ├── __pycache__/
 │   ├── core/
-│   ├── settings.py
+│   └── settings.py
 │
 ├── vege/                      # Main Django project
 │   ├── __init__.py
@@ -66,7 +68,7 @@ project_root/
 │   ├── settings.py
 │   ├── urls.py
 │   ├── wsgi.py
-│   ├── admin.py
+│   └── admin.py
 │
 ├── recipe/                    # Django app (CRUD logic)
 │   ├── __pycache__/
@@ -76,17 +78,20 @@ project_root/
 │   │   ├── register.html
 │   │   ├── recipes.html
 │   │   ├── recipe_detail.html
-│   │   ├── update_recipe.html
+│   │   └── update_recipe.html
 │   │
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models.py
 │   ├── tests.py
-│   ├── views.py
+│   └── views.py
 │
 ├── templates/                 # Global templates
-│   ├── base.html
+│   └── base.html
 │
-├── public/
-│   ├── media/                 # Uploaded files (images not shown)
+└── public/
+    └── media/                 # Uploaded files (images hidden)
+```
+
+> Note: The `media/` folder stores uploaded recipe images and is not expanded here for clarity.
