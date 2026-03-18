@@ -50,22 +50,49 @@ This project was built with the goal of:
 
 ## 📂 Project Structure
 
-
-recipe_hub/
+project_root/
 │
 ├── manage.py
-├── recipe_hub/
-│ ├── settings.py
-│ ├── urls.py
+├── db.sqlite3
+├── README.md
 │
-├── recipes/
-│ ├── models.py
-│ ├── views.py
-│ ├── urls.py
-│ ├── templates/
-│ │ ├── base.html
-│ │ ├── recipe_list.html
-│ │ ├── recipe_form.html
+├── core/                  # Project configuration folder
+│   ├── __pycache__/
+│   ├── core/
+│   ├── settings.py
 │
-├── media/
-│ ├── uploads/
+├── vege/                  # Main Django project (settings, urls, wsgi)
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   ├── admin.py
+│
+├── recipe/                # Django app (business logic)
+│   ├── __pycache__/
+│   ├── migrations/
+│   ├── templates/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── recipes.html
+│   │   ├── recipe_detail.html
+│   │   ├── update_recipe.html
+│   │
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── views.py
+│
+├── templates/             # Global templates
+│   ├── base.html
+│
+├── public/
+│   ├── media/             # Uploaded images
+│       ├── Gobi-Manchurian.jpg
+│       ├── IMG_*.jpg
+│       ├── Khumb-Matar.jpg
+│       ├── Mango-Cards.jpg
+│       ├── Rajasthani-Papad.jpg
