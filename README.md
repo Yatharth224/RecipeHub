@@ -95,3 +95,11 @@ project_root/
 ```
 
 > Note: The `media/` folder stores uploaded recipe images and is not expanded here for clarity.
+
+
+
+---
+
+## 🧠 Architecture Diagram
+
+### 🔹 ASCII Representation
