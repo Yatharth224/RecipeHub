@@ -131,3 +131,6 @@ project_root/
 
 ### 🔹 Mermaid Diagram (Optional)
 
+```mermaid
+graph TD
+    A[User] --> B[Django Views]
