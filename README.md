@@ -125,3 +125,9 @@ project_root/
       +----------+----------+
       |   Templates (HTML)  |
       +---------------------+
+
+
+---
+
+### 🔹 Mermaid Diagram (Optional)
+
