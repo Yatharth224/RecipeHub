@@ -136,4 +136,6 @@ graph TD
     A[User] --> B[Django Views]
     B --> C[Django Models]
     C --> D[SQLite Database]
+    B --> E[Templates (HTML)]
+    E --> A
     
