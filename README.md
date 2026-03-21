@@ -153,3 +153,8 @@ venv\Scripts\activate      # Windows
 
 3️⃣ Install dependencies
 pip install -r requirements.txt
+
+
+4️⃣ Apply migrations
+python manage.py makemigrations
+python manage.py migrate
