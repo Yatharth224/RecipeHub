@@ -139,3 +139,7 @@ graph TD
     B --> E[Templates (HTML)]
     E --> A
     
+⚙️ Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/your-username/recipe-hub.git
+cd recipe-hub
