@@ -171,3 +171,6 @@ http://127.0.0.1:8000/
 📈 Learning Outcomes
 Django MVT Architecture
 CRUD operations
+Template rendering
+Authentication system
+File handling (media uploads)
