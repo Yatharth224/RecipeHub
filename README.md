@@ -174,3 +174,6 @@ CRUD operations
 Template rendering
 Authentication system
 File handling (media uploads)
+
+🔮 Future Improvements
+REST API using Django REST Framework
