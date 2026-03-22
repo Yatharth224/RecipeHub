@@ -177,3 +177,6 @@ File handling (media uploads)
 
 🔮 Future Improvements
 REST API using Django REST Framework
+Deployment (AWS / Render)
+Recipe categories & filters
+User profiles
