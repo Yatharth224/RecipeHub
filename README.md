@@ -180,3 +180,12 @@ REST API using Django REST Framework
 Deployment (AWS / Render)
 Recipe categories & filters
 User profiles
+
+👨‍💻 Author
+
+Yatharth Singh Chouhan
+Backend Developer | Django | APIs
+
+📄 License
+
+This project is for learning purposes.
